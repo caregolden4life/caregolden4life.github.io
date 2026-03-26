@@ -1,0 +1,176 @@
+/* ===== CSS Reset & Design Tokens ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Primary - Warm Gold */
+  --gold-50: #FDF8EF;
+  --gold-100: #F9EDCF;
+  --gold-200: #F3D99F;
+  --gold-300: #EDCA70;
+  --gold-400: #E0B441;
+  --gold-500: #C8963E;
+  --gold-600: #A87A2F;
+  --gold-700: #845E26;
+  --gold-800: #5E4420;
+  --gold-900: #3D2C15;
+
+  /* Secondary - Deep Forest Green */
+  --green-50: #ECF5F0;
+  --green-100: #D0E8DB;
+  --green-200: #A1D1B7;
+  --green-300: #6DB68E;
+  --green-400: #449A6B;
+  --green-500: #2D7A52;
+  --green-600: #1A5C3A;
+  --green-700: #1A3C34;
+  --green-800: #132B26;
+  --green-900: #0D1E1A;
+
+  /* Neutrals */
+  --cream: #FBF7F0;
+  --cream-dark: #F5F0E8;
+  --warm-white: #FEFCFA;
+  --text-primary: #2C2416;
+  --text-secondary: #6B5D4D;
+  --text-muted: #9C8E7D;
+  --border-light: #E8DFD2;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(44, 36, 22, 0.06), 0 1px 2px rgba(44, 36, 22, 0.04);
+  --shadow-md: 0 4px 12px rgba(44, 36, 22, 0.08), 0 2px 6px rgba(44, 36, 22, 0.04);
+  --shadow-lg: 0 12px 40px rgba(44, 36, 22, 0.12), 0 4px 12px rgba(44, 36, 22, 0.06);
+  --shadow-xl: 0 20px 60px rgba(44, 36, 22, 0.15), 0 8px 20px rgba(44, 36, 22, 0.08);
+  --shadow-gold: 0 8px 30px rgba(200, 150, 62, 0.2);
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 200ms var(--ease-out);
+  --transition-normal: 400ms var(--ease-out);
+  --transition-slow: 600ms var(--ease-out);
+
+  /* Border radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--warm-white);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ===== Scroll Animation Base ===== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.is-visible .animate-on-scroll,
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.is-visible .animate-on-scroll:nth-child(2) { transition-delay: 100ms; }
+.is-visible .animate-on-scroll:nth-child(3) { transition-delay: 200ms; }
+.is-visible .animate-on-scroll:nth-child(4) { transition-delay: 300ms; }
+.is-visible .animate-on-scroll:nth-child(5) { transition-delay: 400ms; }
+.is-visible .animate-on-scroll:nth-child(6) { transition-delay: 500ms; }
+
+/* ===== Keyframes ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes particleRise {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100px) scale(1); opacity: 0; }
+}
+
+@keyframes scrollWheel {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(8px); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}

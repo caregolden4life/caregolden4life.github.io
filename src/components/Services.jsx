@@ -1,10 +1,13 @@
 import { useLanguage } from '../context/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { SERVICES } from '../constant';
+import { useAutoScroll } from '../hooks/useAutoScroll';
 
 export default function Services() {
   const { lang, t } = useLanguage();
   const sectionRef = useScrollAnimation();
+  const isMobileOrTablet = typeof window !== 'undefined' && window.innerWidth <= 1024;
+  const scrollRef = useAutoScroll(isMobileOrTablet, 3500);
 
   return (
     <section className="services section section--alt" id="services" ref={sectionRef}>
@@ -14,7 +17,7 @@ export default function Services() {
           <p className="section__subtitle">{t('servicesSubtitle')}</p>
         </div>
 
-        <div className="services__grid">
+        <div className="services__grid" ref={scrollRef}>
           {SERVICES.map((service, i) => (
             <div
               key={i}

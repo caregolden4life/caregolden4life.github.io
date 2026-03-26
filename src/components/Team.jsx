@@ -1,12 +1,15 @@
 import { useLanguage } from '../context/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { TEAM } from '../constant';
+import { useAutoScroll } from '../hooks/useAutoScroll';
 
 const AVATARS = ['👩‍⚕️', '👩‍💼', '👩‍🔬', '👨‍⚕️'];
 
 export default function Team() {
   const { lang, t } = useLanguage();
   const sectionRef = useScrollAnimation();
+  const isMobileOrTablet = typeof window !== 'undefined' && window.innerWidth <= 1024;
+  const scrollRef = useAutoScroll(isMobileOrTablet, 4500);
 
   return (
     <section className="team section" id="team" ref={sectionRef}>
@@ -18,7 +21,7 @@ export default function Team() {
 
         <p className="team__desc animate-on-scroll">{t('teamDesc')}</p>
 
-        <div className="team__grid">
+        <div className="team__grid" ref={scrollRef}>
           {TEAM.map((member, i) => (
             <div
               key={i}

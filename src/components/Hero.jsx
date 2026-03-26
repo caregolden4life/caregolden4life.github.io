@@ -21,7 +21,10 @@ export default function Hero() {
     <section className="hero" id="hero">
       <div
         className="hero__bg"
-        style={{ backgroundImage: `url(${IMAGES.heroBg})`, transform: `translateY(${offset * 0.3}px)` }}
+        style={{ 
+          backgroundImage: `url(${IMAGES.heroBg})`, 
+          transform: window.innerWidth > 768 ? `translateY(${offset * 0.3}px)` : 'none'
+        }}
       />
       <div className="hero__overlay" />
 

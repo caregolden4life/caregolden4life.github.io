@@ -1,10 +1,13 @@
 import { useLanguage } from '../context/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { PRICING } from '../constant';
+import { useAutoScroll } from '../hooks/useAutoScroll';
 
 export default function Pricing() {
   const { lang, t } = useLanguage();
   const sectionRef = useScrollAnimation();
+  const isMobileOrTablet = typeof window !== 'undefined' && window.innerWidth <= 1024;
+  const scrollRef = useAutoScroll(isMobileOrTablet, 4000);
 
   return (
     <section className="pricing section section--alt" id="pricing" ref={sectionRef}>
@@ -14,7 +17,7 @@ export default function Pricing() {
           <p className="section__subtitle">{t('pricingSubtitle')}</p>
         </div>
 
-        <div className="pricing__grid">
+        <div className="pricing__grid" ref={scrollRef}>
           {PRICING.map((pkg, i) => {
             const data = pkg[lang];
             return (
